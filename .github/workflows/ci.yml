@@ -113,32 +113,11 @@ jobs:
         command: test
         args: --verbose --locked --all --release --target ${{ matrix.target }}
 
-    - name: Strip release binary (linux and macos only)
-      if: matrix.build == 'linux' || matrix.build == 'macos'
-      run: strip "target/${{ matrix.target }}/release/${{ env.PKG_NAME }}"
-
-    - name: Build archive
-      shell: bash
-      run: |
-        staging="${{ env.PKG_NAME }}-${{ env.VERSION }}-${{ matrix.target }}"
-        mkdir -p "$staging"
-        cp {README.md,LICENSE*} "$staging/"
-        if [ "${{ matrix.os }}" = "windows-latest" ]; then
-          cp "target/${{ matrix.target }}/release/${{ env.PKG_NAME }}.exe" "$staging/"
-          7z a "$staging.zip" "$staging"
-          echo "ASSET=${staging}.zip" >> $GITHUB_ENV
-        else
-          cp "target/${{ matrix.target }}/release/${{ env.PKG_NAME }}" "$staging/"
-          tar czf "$staging.tar.gz" "$staging"
-          echo "ASSET=${staging}.tar.gz" >> $GITHUB_ENV
-        fi
-
-    - name: Create draft release and upload asset
+    - name: Create release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        draft: true
-        files: ${{ env.ASSET }}
+        draft: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
