@@ -104,14 +104,14 @@ jobs:
       with:
         use-cross: ${{ matrix.usecross }}
         command: build
-        args: --verbose --locked --all --release --target ${{ matrix.target }}
+        args: --verbose --all --release --target ${{ matrix.target }}
 
     - name: Test
       uses: actions-rs/cargo@v1
       with:
         use-cross: ${{ matrix.usecross }}
         command: test
-        args: --verbose --locked --all --release --target ${{ matrix.target }}
+        args: --verbose --all --release --target ${{ matrix.target }}
 
     - name: Create release
       uses: softprops/action-gh-release@v1
