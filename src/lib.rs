@@ -10,7 +10,7 @@
 )]
 
 /*!
-Send a static file from the file system.
+Send a static file from the file system along with appropriate mime type.
 */
 
 use std::path::PathBuf;
