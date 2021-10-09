@@ -31,4 +31,4 @@ version = "1.10.0"
 [dev-dependencies]
 trillium-send-file = { path = ".", features = ["smol"] }
 trillium-smol = "0.2.0"
-trillium-testing = "0.3.1"
+trillium-testing = { version = "0.3.1", features = ["smol"] }
