@@ -61,7 +61,7 @@ cfg_if! { if #[cfg(any(feature= "smol", feature = "async-std"))] {
      Extension trait adding `send_file` capabilities to [`Conn`].
      */
     #[trillium::async_trait]
-    pub trait SendFileConnExt : Sync {
+    pub trait SendFileConnExt {
         /// sets the streaming body of file.
         async fn send_file(mut self, path: PathBuf) -> Conn;
     }
@@ -80,6 +80,7 @@ cfg_if! { if #[cfg(any(feature= "smol", feature = "async-std"))] {
             )
             .with_body(Body::new_streaming(file, Some(len)))
             .with_status(200)
+            .halt()
         }
     }
 }}
