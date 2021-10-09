@@ -24,6 +24,7 @@ Use `features = ["async-std"]` for async-std runtime.
 use trillium::Conn;
 use trillium_send_file::SendFileConnExt;
 
+# #[allow(clippy::needless_doctest_main)]
 fn main() {
     trillium_smol::run(|conn: Conn| async move {
         conn.send_file("/tmp/file.txt".into()).await
