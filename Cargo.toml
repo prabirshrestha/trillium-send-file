@@ -21,7 +21,7 @@ cfg-if = "1.0.0"
 futures-lite = "1.12.0"
 log = "0.4.14"
 trillium = "0.2.0"
-mime_guess = "2.0.3"
+mime_guess = "2.0.4"
 
 [dependencies.async_std_crate]
 optional = true
