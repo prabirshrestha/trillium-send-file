@@ -26,7 +26,7 @@ mime_guess = "2.0.4"
 [dependencies.async_std_crate]
 optional = true
 package = "async-std"
-version = "1.10.0"
+version = "1.12.0"
 
 [dev-dependencies]
 trillium-send-file = { path = ".", features = ["smol"] }
